@@ -1,0 +1,22 @@
+###########################################
+# Syntax Coloring Map For lgWhisen
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+lgwhisen	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+
+setActype	KEYWORD2
+setHeating	KEYWORD2
+setTemp		KEYWORD2
+setFlow		KEYWORD2
+setIrpin	KEYWORD2
+activate	KEYWORD2
+power_down	KEYWORD2
+state 		KEYWORD2
