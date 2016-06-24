@@ -20,6 +20,31 @@ lgWhisen.setHeating(int heating)
 lgWhisen.setTemp(int temperature)
 lgWhisen.setFlow(int flow)
 lgWhisen.setIrpin(int irpin)
+
+1)
+lgWhisen lgWhisen();
+void setup()
+{
+  lgWhisen.setActype(0)
+  lgWhisen.setHeating(0)
+  lgWhisen.setTemp(27)
+  lgWhisen.setFlow(1)
+  // for esp8266
+  lgWhisen.setIrpin(IRPIN)  
+}
+
+2)
+lgWhisen lgWhisen(0, 0)
+void setup()
+{
+  lgWhisen.setTemp(27)
+  lgWhisen.setFlow(1)
+  // for esp8266
+  lgWhisen.setIrpin(IRPIN)  
+}
+
+3)....
+
 */
 
 // for esp8266
