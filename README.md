@@ -23,21 +23,21 @@ control LG WHISEN AC.
 - flow           : 0 -> low, 1 -> mid, 2 -> high, if type == 1 3 -> change
 - pin no of ir   : esp8266 only
 
-lgWhisen lgWhisen()
-lgWhisen lgWhisen(int actype, int heating)
-lgWhisen lgWhisen(int actype, int heating, int irpin)
-lgWhisen lgWhisen(int actype, int heating, int temperature, int flow, int irpin)
+- lgWhisen lgWhisen()
+- lgWhisen lgWhisen(int actype, int heating)
+- lgWhisen lgWhisen(int actype, int heating, int irpin)
+- lgWhisen lgWhisen(int actype, int heating, int temperature, int flow, int irpin)
 
-lgWhisen.activate()
-lgWhisen.activate(int temperature, int flow)
-lgWhisen.power_down()
+- lgWhisen.activate()
+- lgWhisen.activate(int temperature, int flow)
+- lgWhisen.power_down()
 
-lgWhisen.setActype(int actype)
-lgWhisen.setHeating(int heating)
-lgWhisen.setTemp(int temperature)
-lgWhisen.setFlow(int flow)
-lgWhisen.setIrpin(int irpin)
-lgWhisen.state()
+- lgWhisen.setActype(int actype)
+- lgWhisen.setHeating(int heating)
+- lgWhisen.setTemp(int temperature)
+- lgWhisen.setFlow(int flow)
+- lgWhisen.setIrpin(int irpin)
+- lgWhisen.state()
 
 
 Enjoy.
