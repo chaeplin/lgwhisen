@@ -47,12 +47,21 @@ void setup()
 
 */
 
-// for esp8266
-lgWhisen lgWhisen(0, 0, 27, 0, IRPIN);
+#ifdef ESP8266
+  lgWhisen lgWhisen(0, 0, 27, 0, IRPIN);
+#else
+  lgWhisen lgWhisen(0, 0);
+#endif
+
 bool x = false;
 
 void setup()
 {
+#ifdef ESP8266
+#else
+  lgWhisen.setTemp(27);
+  lgWhisen.setFlow(1);
+#endif
 
   Serial.begin(115200);
   while (!Serial) {

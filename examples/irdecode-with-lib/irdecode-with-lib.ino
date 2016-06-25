@@ -1,14 +1,30 @@
-#include <IRremoteESP8266.h>
 #include <lgWhisen.h>
+
+#ifdef ESP8266
+  #include <IRremoteESP8266.h>
+#else
+    #include <IRremote.h>
+#endif
 
 #define RECV_PIN 14
 #define IRPIN 2
 
 IRrecv irrecv(RECV_PIN);
-lgWhisen lgWhisen(1, 0, 27, 0, IRPIN);
+
+#ifdef ESP8266
+  lgWhisen lgWhisen(0, 0, 27, 0, IRPIN);
+#else
+  lgWhisen lgWhisen(0, 0);
+#endif
 
 void setup()
 {
+#ifdef ESP8266
+#else
+  lgWhisen.setTemp(27);
+  lgWhisen.setFlow(1);
+#endif
+  
   Serial.begin(115200);
   irrecv.enableIRIn();
   while (!Serial) {
