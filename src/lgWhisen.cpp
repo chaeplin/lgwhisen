@@ -13,6 +13,7 @@ lgWhisen::lgWhisen()
   this->flow            = NOT_DEFINED;
   this->irpin           = NOT_DEFINED;
   this->ac_code_to_send = NOT_DEFINED;
+  setDecodeparas();
 }
 
 lgWhisen::lgWhisen(int actype, int heating)
@@ -24,6 +25,7 @@ lgWhisen::lgWhisen(int actype, int heating)
   this->ac_code_to_send = NOT_DEFINED;
   setActype(actype);
   setHeating(heating);
+  setDecodeparas();
 }
 
 lgWhisen::lgWhisen(int actype, int heating, int irpin)
@@ -35,6 +37,7 @@ lgWhisen::lgWhisen(int actype, int heating, int irpin)
   setActype(actype);
   setHeating(heating);
   setIrpin(irpin);
+  setDecodeparas();
 }
 
 lgWhisen::lgWhisen(int actype, int heating, int temperature, int flow, int irpin)
@@ -46,6 +49,7 @@ lgWhisen::lgWhisen(int actype, int heating, int temperature, int flow, int irpin
   setTemp(temperature);
   setFlow(flow);
   setIrpin(irpin);
+  setDecodeparas();
 }
 
 boolean lgWhisen::send_code() 
@@ -148,6 +152,131 @@ boolean lgWhisen::power_down()
   }
 }
 
+boolean lgWhisen::decode(decode_results *results)
+{
+  if (results->bits == 28 || results->bits == 32)
+  {
+    unsigned long data = 0;
+    unsigned long tempdata = 0;
+    for (int i = 3;  i < results->rawlen;  i++) {
+      unsigned long  x = results->rawbuf[i] * USECPERTICK;
+      if (!(i & 1))
+      {
+        if ( x > 1000)
+        {
+          data = (data << 1) | 1;
+        }
+        else
+        {
+          data <<= 1;
+        }
+      }
+    }
+
+    tempdata = data;
+    int ac_msbits7 = tempdata & B1111;
+    tempdata = tempdata >> 4;
+    int ac_msbits6 = tempdata & B1111;
+    tempdata = tempdata >> 4;
+    int ac_msbits5 = tempdata & B1111;
+    tempdata = tempdata >> 4;
+    int ac_msbits4 = tempdata & B1111;
+    tempdata = tempdata >> 4;
+    int ac_msbits3 = tempdata & B1111;
+    tempdata = tempdata >> 4;
+    int ac_msbits2 = tempdata & B1111;
+    tempdata = tempdata >> 4;
+    int ac_msbits1 = tempdata;
+
+    if (  ac_msbits1 == 8 &&
+          ac_msbits2 == 8 &&
+          ac_msbits7 == ((ac_msbits3 + ac_msbits4 + ac_msbits5 + ac_msbits6) & B1111)
+      )
+    {
+      if ( data == 0x88C0051)
+      {
+        this->ir_mode = AC_OFF;
+      }
+      else if (ac_msbits3 == 0x0)
+      {
+        this->ir_mode = AC_ON;
+
+        if ( ac_msbits4 == 0)
+        {
+          this->ir_heating = AC_COOLING;
+        }
+        else if (ac_msbits4 == 4)
+        {
+          this->ir_heating = AC_HEATING;
+        }
+        
+        this->ir_temperature = ac_msbits5 + 15;
+        if (this->actype == 0)
+        {
+          switch (ac_msbits6)
+          {
+            case 0:
+              this->ir_flow = 0;
+              break;
+
+            case 4:
+              this->ir_flow = 1;
+              break;
+
+            case 6:
+              this->ir_flow = 2;
+              break;              
+
+             default:
+               break;
+          }
+        }
+        else if (this->actype == 1)
+        {
+          switch (ac_msbits6)
+          {          
+            case 0:
+              this->ir_flow = 0;
+              break;
+
+            case 2:
+              this->ir_flow = 1;
+              break;
+
+            case 4:
+              this->ir_flow = 2;
+              break;
+
+            case 5:
+              this->ir_flow = 3;
+              break;              
+
+             default:
+               break;
+          }
+        }
+      }
+      else if (ac_msbits3 == 0x1 && ac_msbits5 == 0x0 )
+      {
+        this->ir_mode = AC_SPECIAL;
+      }
+      else if (ac_msbits3 == 0xC && ac_msbits5 == 0x0 && ac_msbits6 == 0x0)
+      {
+        this->ir_mode = AC_AIRCLEAN;
+      }
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  else
+  {
+    return false;
+  }
+}
+
 lgWhisen& lgWhisen::setActype(int actype)
 {
   this->actype = actype;
@@ -176,6 +305,35 @@ lgWhisen& lgWhisen::setIrpin(int irpin)
 {
   this->irpin = irpin;
   return *this;
+}
+
+lgWhisen& lgWhisen::setDecodeparas()
+{
+  this->ir_mode         = NOT_DEFINED;
+  this->ir_heating      = NOT_DEFINED;
+  this->ir_temperature  = NOT_DEFINED;
+  this->ir_flow         = NOT_DEFINED;
+  return *this;
+}
+
+uint8_t lgWhisen::get_ir_mode()
+{
+  return this->ir_mode;
+}
+
+uint8_t lgWhisen::get_ir_heating()
+{
+  return this->ir_heating;
+}
+
+uint8_t lgWhisen::get_ir_temperature()
+{
+  return this->ir_temperature;
+}
+
+uint8_t lgWhisen::get_ir_flow()
+{
+  return this->ir_flow;
 }
 
 int lgWhisen::state() {
