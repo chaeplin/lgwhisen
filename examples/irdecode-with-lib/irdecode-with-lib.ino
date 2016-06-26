@@ -6,8 +6,8 @@
     #include <IRremote.h>
 #endif
 
-#define RECV_PIN 14
-#define IRPIN 2
+#define RECV_PIN 14 // RX
+#define IRPIN 2     // TX
 
 IRrecv irrecv(RECV_PIN);
 
