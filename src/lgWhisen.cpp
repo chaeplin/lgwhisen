@@ -16,6 +16,18 @@ lgWhisen::lgWhisen()
   setDecodeparas();
 }
 
+lgWhisen::lgWhisen(int actype)
+{
+  this->_state          = AC_OFF;
+  this->heating         = NOT_DEFINED;
+  this->temperature     = NOT_DEFINED;
+  this->flow            = NOT_DEFINED;
+  this->irpin           = NOT_DEFINED;
+  this->ac_code_to_send = NOT_DEFINED;
+  setActype(actype);
+  setDecodeparas();
+}
+
 lgWhisen::lgWhisen(int actype, int heating)
 {
   this->_state          = AC_OFF;

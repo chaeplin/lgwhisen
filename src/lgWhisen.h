@@ -71,6 +71,7 @@ private:
 
 public:
 	lgWhisen();
+	lgWhisen(int);
 	lgWhisen(int, int);
 	lgWhisen(int, int, int);
 	lgWhisen(int, int, int, int, int);

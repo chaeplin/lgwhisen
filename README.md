@@ -24,6 +24,7 @@ control LG WHISEN AC.
 - pin no of ir   : esp8266 only
 
 - lgWhisen lgWhisen()
+- lgWhisen lgWhisen(int actype)
 - lgWhisen lgWhisen(int actype, int heating)
 - lgWhisen lgWhisen(int actype, int heating, int irpin)
 - lgWhisen lgWhisen(int actype, int heating, int temperature, int flow, int irpin)
