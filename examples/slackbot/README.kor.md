@@ -25,7 +25,7 @@ check -> report ac status
 ```
 
 ## 단점
-- IR 라이브러리가 LG 휘센 전용
+- IR 인코딩/디코딩용 lgWhisen 라이브러리가 LG 휘센 전용(우리집이 휘센만 있어요..)
 
 ## 스케치
 [https://github.com/chaeplin/lgwhisen/blob/master/examples/slackbot/slackbot.ino](https://github.com/chaeplin/lgwhisen/blob/master/examples/slackbot/slackbot.ino)
