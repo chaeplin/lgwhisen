@@ -37,7 +37,7 @@ check -> report ac status
 ### 준비물
 - esp8266. 편의상 nodemcu 사용
 - IR RX : TSOP38238 // https://learn.adafruit.com/ir-sensor
-- IR TX : IR LED(38KHz, 940nm)
+- IR TX : IR LED(38KHz)
 
 nodemcu | ir rx | ir tx
 --------|-------|--------
