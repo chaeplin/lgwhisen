@@ -27,6 +27,9 @@ check -> report ac status
 ## 단점
 - IR 라이브러리가 LG 휘센 전용
 
+## 스케치
+[https://github.com/chaeplin/lgwhisen/blob/master/examples/slackbot/slackbot.ino](https://github.com/chaeplin/lgwhisen/blob/master/examples/slackbot/slackbot.ino)
+
 ### 준비물
 - esp8266. 편의상 nodemcu 사용
 - IR RX : TSOP38238 // https://learn.adafruit.com/ir-sensor
@@ -37,10 +40,10 @@ nodemcu | ir rx | ir tx
 ![nodemcu](./pics/nodemcuv1.jpg) | ![irrx](./pics/TSOP38238-ir-rx.jpg) | ![irtx](./pics/ir-tx.jpg)
 
 ### 라이브러리
-WebSocketsClient : [https://github.com/Links2004/arduinoWebSockets](https://github.com/Links2004/arduinoWebSockets)
-ArduinoJson : [https://github.com/bblanchon/ArduinoJson](https://github.com/bblanchon/ArduinoJson)
-lgWhisen : [https://github.com/chaeplin/lgwhisen](https://github.com/chaeplin/lgwhisen)
-IRremoteESP8266 : [https://github.com/markszabo/IRremoteESP8266](https://github.com/markszabo/IRremoteESP8266)
+- WebSocketsClient : [https://github.com/Links2004/arduinoWebSockets](https://github.com/Links2004/arduinoWebSockets)
+- ArduinoJson : [https://github.com/bblanchon/ArduinoJson](https://github.com/bblanchon/ArduinoJson)
+- lgWhisen : [https://github.com/chaeplin/lgwhisen](https://github.com/chaeplin/lgwhisen)
+- IRremoteESP8266 : [https://github.com/markszabo/IRremoteESP8266](https://github.com/markszabo/IRremoteESP8266)
 
 ### 연결
 - RX : TSOP38238의 out을 D5/GPIO14에 연결
