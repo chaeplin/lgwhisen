@@ -3,6 +3,7 @@ esp8266 + slackbot으로 LG 휘센 에어콘 콘트롤
 
 esp8266과 slack rtm bot api를 이용하여 인터넷으로 에어콘 조정
 
+![conn](./pics/conn.jpg)
 ![slackbot](./pics/slackbot.jpg)
 
 ## 기능
