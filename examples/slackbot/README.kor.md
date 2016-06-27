@@ -28,6 +28,9 @@ check -> report ac status
 ## 단점
 - IR 인코딩/디코딩용 lgWhisen 라이브러리가 LG 휘센 전용(우리집이 휘센만 있어요..)
 
+## rtm slackbot
+- based on Uri Shaked's Arduino Real-Time Slack Bot [https://github.com/urish/arduino-slack-bot](https://github.com/urish/arduino-slack-bot)
+
 ## 스케치
 [https://github.com/chaeplin/lgwhisen/blob/master/examples/slackbot/slackbot.ino](https://github.com/chaeplin/lgwhisen/blob/master/examples/slackbot/slackbot.ino)
 
