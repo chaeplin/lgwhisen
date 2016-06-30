@@ -12,7 +12,7 @@ Control LG WHISEN Air Conditioners with slackbot
 - report status
 - adjust/report temp/flow/on/off when changed by ir remote controller 
 
-## 명령
+## Command
 - help
 ```
 on -> ac on
