@@ -34,6 +34,61 @@ void setup()
   Serial.println("  - - - T E S T - - -   ");
 }
 
+// http://www.phanderson.com/arduino/arduino_display.html
+void print_binary(int v, int num_places)
+{
+    int mask=0, n;
+
+    for (n=1; n<=num_places; n++)
+    {
+        mask = (mask << 1) | 0x0001;
+    }
+    v = v & mask;  // truncate v to specified number of places
+
+    while(num_places)
+    {
+
+        if (v & (0x0001 << num_places-1))
+        {
+             Serial.print("1");
+        }
+        else
+        {
+             Serial.print("0");
+        }
+
+        --num_places;
+        if(((num_places%4) == 0) && (num_places != 0))
+        {
+            Serial.print("_");
+        }
+    }
+}
+
+void print_hex(int v, int num_places)
+{
+    int mask=0, n, num_nibbles, digit;
+
+    for (n=1; n<=num_places; n++)
+    {
+        mask = (mask << 1) | 0x0001;
+    }
+    v = v & mask; // truncate v to specified number of places
+
+    num_nibbles = num_places / 4;
+    if ((num_places % 4) != 0)
+    {
+        ++num_nibbles;
+    }
+
+    do
+    {
+        digit = ((v >> (num_nibbles-1) * 4)) & 0x0f;
+        Serial.print(digit, HEX);
+    } while(--num_nibbles);
+
+}
+
 void dumpInfo(decode_results *results)
 {
   if (results->bits == 28 || results->bits == 32)
@@ -76,30 +131,10 @@ void dumpInfo(decode_results *results)
       )
     {
       Serial.println("ir received --");
-      Serial.print(ac_msbits1, HEX);
-      Serial.print(ac_msbits2, HEX);
-      Serial.print(ac_msbits3, HEX);
-      Serial.print(ac_msbits4, HEX);
-      Serial.print(ac_msbits5, HEX);
-      Serial.print(ac_msbits6, HEX);
-      Serial.print(ac_msbits7, HEX);
-      
+      print_hex(data, 28);
       Serial.print(" - ");
-      
-      Serial.print(ac_msbits1, BIN);
-      Serial.print("|");
-      Serial.print(ac_msbits2, BIN);
-      Serial.print("|");
-      Serial.print(ac_msbits3, BIN);
-      Serial.print("|");
-      Serial.print(ac_msbits4, BIN);
-      Serial.print("|");
-      Serial.print(ac_msbits5, BIN);
-      Serial.print("|");
-      Serial.print(ac_msbits6, BIN);
-      Serial.print("|");
-      Serial.println(ac_msbits7, BIN);
-
+      print_binary(data, 28);
+      Serial.println(); 
 
       if ( data == 0x88C0051)
       {
