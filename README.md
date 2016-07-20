@@ -38,6 +38,8 @@ control LG WHISEN AC.
 - lgWhisen.activate()
 - lgWhisen.activate(int temperature, int flow)
 - lgWhisen.power_down()
+- lgWhisen.autodry_on()
+- lgWhisen.autodry_off()
 ```
 
 ```
