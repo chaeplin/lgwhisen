@@ -164,6 +164,33 @@ boolean lgWhisen::power_down()
   }
 }
 
+
+boolean lgWhisen::autodry_on()
+{
+  this->ac_code_to_send = 0x88C00B7;
+  if (send_code())
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+
+boolean lgWhisen::autodry_off()
+{
+  this->ac_code_to_send = 0x88C00C8;
+  if (send_code())
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
 boolean lgWhisen::decode(decode_results *results)
 {
   if (results->bits == 28 || results->bits == 32)

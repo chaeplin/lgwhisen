@@ -85,6 +85,8 @@ public:
 	boolean activate();
 	boolean activate(int temperature, int flow);
 	boolean power_down();
+	boolean autodry_on();
+	boolean autodry_off();
 	boolean decode(decode_results *results);
 	
 	uint8_t get_ir_mode();
