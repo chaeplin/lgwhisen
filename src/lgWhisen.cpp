@@ -191,7 +191,7 @@ boolean lgWhisen::autodry_off()
   }
 }
 
-boolean lgWhisen::alrclean_on()
+boolean lgWhisen::airclean_on()
 {
   this->ac_code_to_send = 0x88C000C;
   if (send_code())
@@ -204,7 +204,7 @@ boolean lgWhisen::alrclean_on()
   }
 }
 
-boolean lgWhisen::alrclean_off()
+boolean lgWhisen::airclean_off()
 {
   this->ac_code_to_send = 0x88C0084;
   if (send_code())
