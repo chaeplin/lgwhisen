@@ -178,7 +178,6 @@ boolean lgWhisen::autodry_on()
   }
 }
 
-
 boolean lgWhisen::autodry_off()
 {
   this->ac_code_to_send = 0x88C00C8;
@@ -191,6 +190,33 @@ boolean lgWhisen::autodry_off()
     return false;
   }
 }
+
+boolean lgWhisen::alrclean_on()
+{
+  this->ac_code_to_send = 0x88C000C;
+  if (send_code())
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+boolean lgWhisen::alrclean_off()
+{
+  this->ac_code_to_send = 0x88C0084;
+  if (send_code())
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
 boolean lgWhisen::decode(decode_results *results)
 {
   if (results->bits == 28 || results->bits == 32)
