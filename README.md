@@ -9,7 +9,7 @@ control LG WHISEN AC.
 
 ### Library used
 - https://github.com/z3t0/Arduino-IRremote for Arduino
-- https://github.com/markszabo/IRremoteESP8266 for esp8266/Arduino
+- https://github.com/markszabo/IRremoteESP8266/releases/tag/v1.2.0 for esp8266/Arduino
 
 ### Limitations
 - no variable checking(type, temperature, heating/cooling, flow)
